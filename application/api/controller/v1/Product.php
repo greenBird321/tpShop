@@ -29,7 +29,7 @@ class Product
             throw new ProductMissException();
         }
         // 调用 collection类 的 hidden 方法，使从数据库中查询出来的数组临时隐藏一些属性
-        return $products->hidden(['summary']);;
+        return $products->hidden(['summary']);
     }
 
     /***
@@ -47,5 +47,19 @@ class Product
         }
 
         return $products->hidden(['summary', 'img_id']);
+    }
+
+    /**
+     * 根据产品ID查询 产品的详细信息
+     * @param $productId
+     */
+    public function getOne($id)
+    {
+        Loader::validate('IDMustBePostiveInt')->goCheck();
+        $product = productModel::getProductByProductId($id);
+        if (!$product){
+            throw new ProductMissException();
+        }
+        return $product->hidden(['img_id']);
     }
 }

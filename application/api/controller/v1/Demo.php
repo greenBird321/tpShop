@@ -9,8 +9,9 @@
 namespace app\api\controller\v1;
 
 use app\api\validate\TestValidate;
+use think\Controller;
 use think\Validate;
-class Demo
+class Demo extends Controller
 {
     /**
      *  TP的独立验证
@@ -18,7 +19,7 @@ class Demo
     public function verify()
     {
         $data = [
-            'name' => 'test1234567',
+            'name' => '11',
             'email' => 'test@qq.com'
         ];
 
@@ -50,5 +51,19 @@ class Demo
 
         $result = $validator->batch()->check($data);
         var_dump($validator->getError());
+    }
+
+
+    // 前置方法列表 在调用second方法之前要先执行first方法
+    protected $beforeActionList = [
+        'first' => ['only' => 'second']
+    ];
+
+    protected function  first(){
+        echo "first\n";
+    }
+
+    public function second(){
+        echo "second\n";
     }
 }

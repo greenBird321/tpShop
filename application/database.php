@@ -45,7 +45,7 @@ return [
     // 数据集返回类型 此处可以使用collection 默认返回的是collection类 只有Db:: select() 查询出来的结果集有效
     'resultset_type'  => 'collection',
     // 自动写入时间戳字段
-    'auto_timestamp'  => false,
+    'auto_timestamp'  => true,
     // 时间字段取出后的默认时间格式
     'datetime_format' => 'Y-m-d H:i:s',
     // 是否需要进行SQL性能分析

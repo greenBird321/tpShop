@@ -13,10 +13,4 @@ class BaseModel extends Model
         }
         return $value;
     }
-
-    static protected function resultToCollection($object = '')
-    {
-        $collect = collection($object);
-        return $collect;
-    }
 }
